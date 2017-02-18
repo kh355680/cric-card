@@ -11,11 +11,16 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12" ng-show="!vm.isTossDone">
+        <div class="col-xs-2" ng-show="!vm.isTossDone">
             <img ng-click="vm.toss()" src="http://governing.typepad.com/photos/uncategorized/coin_toss.jpg" height="80" width="80" />
         </div>
-        <div class="col-xl-12" ng-show="vm.isTossDone">
+        <div class="col-xl-12 col-xl-offset-5" ng-show="vm.isTossDone">
             Toss Result: {{vm.tossResultInfo}}
+        </div>
+    </div>
+    <div ng-show="vm.isTossDone" class="row">
+        <div class="col-xs-12">
+            <button ng-click="vm.startGame()" class="form-control">Play Begin</button>
         </div>
     </div>
 </div>

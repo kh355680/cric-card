@@ -5,6 +5,14 @@
     <title>Cric Card</title>
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="bower_components/tether/dist/css/tether.min.css" rel="stylesheet" />
+    <style>
+        .col-center-block {
+            float: none;
+            display: block;
+            margin: 0 auto;
+            /* margin-left: auto; margin-right: auto; */
+        }
+    </style>
 </head>
 
 <body ng-app="app">
@@ -27,6 +35,8 @@
     <!-- application scripts -->
     <script src="app/app.js"></script>
     <script src="app/controllers/homeController.js"></script>
+    <script src="app/controllers/play.controller.js"></script>
+    <script src="app/services/cric-info.rest.service.js"></script>
 </body>
 
 </html>

@@ -3,12 +3,14 @@
 
     var app = angular.module('app', ['ui.router']);
 
-    app.config(function ($stateProvider,$urlRouterProvider) {
+    app.config(function ($stateProvider, $urlRouterProvider) {
 
         var playState = {
             name: 'play',
             url: '/play',
-            template: '<h3>hello world!</h3>'
+            templateUrl: 'app/views/play.html',
+            controller: 'playController',
+            controllerAs: 'vm'
         }
 
         var homeState = {
@@ -16,13 +18,13 @@
             url: '/',
             templateUrl: 'app/views/home.html',
             controller: 'homeController',
-            controllerAs:'vm'
+            controllerAs: 'vm'
         }
 
         $stateProvider.state(playState);
         $stateProvider.state(homeState);
 
-        $urlRouterProvider.when('','/')
+        $urlRouterProvider.when('', '/')
     });
 
 })();

@@ -1,15 +1,24 @@
 ﻿(function () {
     'use strict';
 
-    function HomeController() {
+    function HomeController(cricCardRESTService, $state) {
         var vm = this;
+        vm.startGame = startGame;
         vm.startGame = startGame;
 
         vm.tossResultInfo = '';
 
-        init();
-        function startGame() {
+        var game = null;
 
+        init();
+
+        function startGame() {
+            game.StartInnings();
+            cricCardRESTService.saveNewGameInfoToDb(game, function (game) {
+                console.log(game);
+            });
+
+            $state.go('play');
         }
 
         vm.toss = function () {
@@ -21,7 +30,7 @@
             playingTeams.push(teamOne);
             playingTeams.push(teamTwo);
 
-            var game = new Game(playingTeams);
+            game = new Game(playingTeams);
 
             game.tossResult = game.Toss();
             console.log(game.tossResult);
@@ -30,8 +39,7 @@
                 vm.tossResultInfo = teamOne.name + ' ' + 'Won The Toss & Choosed To Bat';
                 vm.teamOneCurrentStatus = 'batting';
                 vm.teamTwoCurrentStatus = 'bowling';
-            }
-            else {
+            } else {
                 vm.tossResultInfo = teamTwo.name + ' ' + 'Won The Toss & Choosed To Bat';
                 vm.teamOneCurrentStatus = 'bowling';
                 vm.teamTwoCurrentStatus = 'batting';
@@ -50,11 +58,12 @@
             vm.teamTwoCurrentStatus = '';
 
             vm.isBowling = true;
-
             vm.isTossDone = false;
+
         }
     }
 
-    angular.module('app').controller('homeController', HomeController );
+    HomeController.$inject = ['cricCardRESTService', '$state']
+    angular.module('app').controller('homeController', HomeController);
 
 })();

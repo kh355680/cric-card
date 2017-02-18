@@ -11,8 +11,8 @@
         this.remainingWickets = 10; 
 
         this.Overs = [];
-        this.Overs[0] = new Over(1);
-        this.Overs[1] = new Over(2);
+        //this.Overs[0] = new Over(1);
+        //this.Overs[1] = new Over(2);
 
 
         this.currentOverNumberTracker = 0;
@@ -54,9 +54,7 @@
             over.Bowls.forEach(function (bowl) {
                 console.log(bowl);
             });
-        })
-
-        console.log('Total Score', this.totalRunScore);
+        });
     }
 
     Innings.prototype.test = function (over,ball) {
