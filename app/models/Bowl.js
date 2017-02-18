@@ -1,10 +1,10 @@
 ﻿(function () {
     'use strict';
 
-    function Bowl(Number, result, commentary) {
-        this.Number = number;
+    function Bowl(number, result) {
+        this.number = number;
         this.result = result;
-        this.commentary = commentary;
+        this.commentary = '';
     }
 
     Bowl.prototype.getFact = function () {
@@ -14,7 +14,7 @@
 
     function Over(number) {
 
-        this.Number = number;
+        this.number = number;
         this.Bowls = [];
         this.TotalScoreInOver = 0;
         

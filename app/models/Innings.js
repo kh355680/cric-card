@@ -19,22 +19,45 @@
         this.currentBowlNumberInOverTracker = 0;
     }
 
-    Game.prototype.Bowl = function () {
+    Innings.prototype.Bowl = function () {
 
+        var runScoredInThisBowl = scoreRun();
 
-        if (this.currentBowlNumberInOverTracker <= 6) {
-            this.currentBowlNumberInOverTracker += this.currentBowlNumberInOverTracker;
+        if (this.currentBowlNumberInOverTracker < 6) {
+            var bowl = new Bowl(this.currentBowlNumberInOverTracker, runScoredInThisBowl);
+            this.Overs[this.currentOverNumberTracker].addBowlToOver(bowl);
+            this.currentBowlNumberInOverTracker += 1;
         }
         else {
+            this.currentOverNumberTracker += 1;
             this.currentBowlNumberInOverTracker = 0;
-            this.currentOverNumberTracker += this.currentOverNumberTracker;
+            var bowl = new Bowl(this.currentBowlNumberInOverTracker, runScoredInThisBowl);
+            this.Overs[this.currentOverNumberTracker].addBowlToOver(bowl);
+            this.currentBowlNumberInOverTracker += 1;
         }
 
-        var bowl = new Bowl();
-        this.Overs[currentOverNumberTracker].addBowlToOver();
+        this.totalRunScore += runScoredInThisBowl;
     }
 
-    Game.prototype.getScoreTillGivenBowlNumberPerOver = function () { };
+    var scoreRun = function () {
+        var min = Math.ceil(0);
+        var max = Math.floor(7);
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    Innings.prototype.getInningsFact = function () {
+
+
+        this.Overs.forEach(function (over) {
+            console.log(over);
+
+            over.Bowls.forEach(function (bowl) {
+                console.log(bowl);
+            });
+        })
+    }
+
+    Innings.prototype.getScoreTillGivenBowlNumberPerOver = function () { };
 
     window.Innings = Innings;
 })();
