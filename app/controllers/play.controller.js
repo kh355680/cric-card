@@ -10,9 +10,13 @@
         var vm = this;
         init();
 
+        vm.disablePlayButton = false;
+        vm.game = null;
+
         vm.score = 0;
         var game = null;
-
+        var bowlCounter = 1;
+        vm.gameProgressPercentage = 0;
         function init() {
 
             var data = cricCardRESTService.game;
@@ -21,15 +25,23 @@
         }
 
         vm.bowl = function () {
-            //var game = JSON.parse(localStorage.getItem('game'));
-            //var game = cricCardRESTService.game;
 
             if (game === null)
                 game = cricCardRESTService.game;
 
             game.Innings[0].Bowl();
             vm.score = game.Innings[0].totalRunScore;
-            console.log(game.Innings[0].getInningsFact());
+
+            if (bowlCounter === 12) {
+                vm.disablePlayButton = true;
+            } else {
+                bowlCounter += 1;
+            }
+
+            vm.gameProgressPercentage += 9;
+            vm.game = game;
+
+            console.log(vm.game.Innings[0].Overs);
         }
     }
 

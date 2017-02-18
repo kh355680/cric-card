@@ -8,7 +8,7 @@
         this.BowlingTeam = BowlingTeam;
 
         this.totalRunScore = 0;
-        this.remainingWickets = 10; 
+        this.remainingWickets = 10;
 
         this.Overs = [];
         //this.Overs[0] = new Over(1);
@@ -25,13 +25,20 @@
 
         if (this.currentBowlNumberInOverTracker < 6) {
             var bowl = new Bowl(this.currentBowlNumberInOverTracker, runScoredInThisBowl);
+
+            if (this.Overs[this.currentOverNumberTracker] === undefined)
+                this.Overs[this.currentOverNumberTracker] = new Over(this.currentOverNumberTracker);
+
             this.Overs[this.currentOverNumberTracker].addBowlToOver(bowl);
             this.currentBowlNumberInOverTracker += 1;
-        }
-        else {
+        } else {
             this.currentOverNumberTracker += 1;
             this.currentBowlNumberInOverTracker = 0;
             var bowl = new Bowl(this.currentBowlNumberInOverTracker, runScoredInThisBowl);
+
+            if (this.Overs[this.currentOverNumberTracker] === undefined)
+                this.Overs[this.currentOverNumberTracker] = new Over(this.currentOverNumberTracker);
+
             this.Overs[this.currentOverNumberTracker].addBowlToOver(bowl);
             this.currentBowlNumberInOverTracker += 1;
         }
@@ -57,12 +64,12 @@
         });
     }
 
-    Innings.prototype.test = function (over,ball) {
+    Innings.prototype.test = function (over, ball) {
 
         var val = 0;
         for (var i = 0; i <= over; i++) {
 
-            for (var j = 0; j < ball; j++){
+            for (var j = 0; j < ball; j++) {
                 val += this.Overs[i].Bowls[j].result;
             }
         }
@@ -70,7 +77,7 @@
         console.log('Total Score', val);
     }
 
-    Innings.prototype.getScoreTillGivenBowlNumberPerOver = function () { };
+    Innings.prototype.getScoreTillGivenBowlNumberPerOver = function () {};
 
     window.Innings = Innings;
 })();
