@@ -14,7 +14,7 @@
         var homeState = {
             name: 'home',
             url: '/',
-            template: '<h3>Its the UI-Router hello world app!</h3>',
+            templateUrl: 'app/views/home.html',
             controller: 'homeController',
             controllerAs:'vm'
         }

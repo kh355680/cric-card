@@ -1,0 +1,21 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            <img ng-show="vm.teamOneCurrentStatus === 'batting'" src="https://s-media-cache-ak0.pinimg.com/736x/7a/a9/85/7aa985cdd0ab0431d9f9e0228dbc6841.jpg" height="80" width="80" />
+            <img ng-show="vm.teamOneCurrentStatus === 'bowling'" height="80" width="80" src="https://rlv.zcache.com/red_cricket_ball_stickers_customizable_with_text-r7782d07176474fb992235e5e1d41a1db_v9waf_8byvr_324.jpg" /> 
+            Team #1 <input type="text" ng-model="vm.teamOneName" /> 
+            vs 
+            <input type="text" ng-model="vm.teamTwoName" /> Team #2 
+            <img ng-show="vm.teamTwoCurrentStatus === 'batting'" src="https://s-media-cache-ak0.pinimg.com/736x/7a/a9/85/7aa985cdd0ab0431d9f9e0228dbc6841.jpg" height="80" width="80"/>
+            <img ng-show="vm.teamTwoCurrentStatus === 'bowling'" height="80" width="80" src="https://rlv.zcache.com/red_cricket_ball_stickers_customizable_with_text-r7782d07176474fb992235e5e1d41a1db_v9waf_8byvr_324.jpg" /> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" ng-show="!vm.isTossDone">
+            <img ng-click="vm.toss()" src="http://governing.typepad.com/photos/uncategorized/coin_toss.jpg" height="80" width="80" />
+        </div>
+        <div class="col-xl-12" ng-show="vm.isTossDone">
+            Toss Result: {{vm.tossResultInfo}}
+        </div>
+    </div>
+</div>

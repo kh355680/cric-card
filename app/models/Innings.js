@@ -55,6 +55,21 @@
                 console.log(bowl);
             });
         })
+
+        console.log('Total Score', this.totalRunScore);
+    }
+
+    Innings.prototype.test = function (over,ball) {
+
+        var val = 0;
+        for (var i = 0; i <= over; i++) {
+
+            for (var j = 0; j < ball; j++){
+                val += this.Overs[i].Bowls[j].result;
+            }
+        }
+
+        console.log('Total Score', val);
     }
 
     Innings.prototype.getScoreTillGivenBowlNumberPerOver = function () { };
