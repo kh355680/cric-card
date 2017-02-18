@@ -1,25 +1,86 @@
-<h1>Play</h1>
-{{vm.teamOne}} vs {{vm.teamTwo}}
+<div class="container">
+    <h1>
+        <p class="text-center">Game Progress</p>
+        <div class="progress">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{vm.gameProgressPercentage}}" aria-valuemin="0"
+                aria-valuemax="100" style="width: {{vm.gameProgressPercentage}}%;">
+            </div>
+        </div>
+    </h1>
 
-<br/> {{vm.score}}
-<br/>
+    <div class="row margin-left">
+        <div class="row top-buffer"></div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form class="form-inline">
+                            <img src="https://s-media-cache-ak0.pinimg.com/736x/7a/a9/85/7aa985cdd0ab0431d9f9e0228dbc6841.jpg" height="80" width="80"
+                            />
+                            <input type="text" class="form-control" ng-model="vm.battingTeam" />
 
-<div class="progress">
-    <div class="progress-bar" style="width: {{vm.gameProgressPercentage}}%;">
-        {{vm.gameProgressPercentage}}%
+                            <img class="img-fluid" alt="Responsive image" src="http://static.comicvine.com/uploads/original/11114/111147851/3641601-7967039862-32593.png"
+                                height="100" width="100">
+
+                            <input type="text" class="form-control" ng-model="vm.bowlingTeam" />
+                            <img height="80" width="80" src="https://rlv.zcache.com/red_cricket_ball_stickers_customizable_with_text-r7782d07176474fb992235e5e1d41a1db_v9waf_8byvr_324.jpg"
+                            />
+                        </form>
+                    </div>
+                </div>
+                <div class="row top-buffer"></div>
+                <div id="display-score" class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-6">
+                        <h1 class="text-center">
+                            <span class="font-weight-bold text-info">{{vm.score}}</span>
+                            <span style="height: 40px;width: 40px">/</span>
+                            <span class="text-danger">10</span>
+                        </h1>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+                <div class="row" ng-hide="vm.gameOver">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <div class="row">
+                            <div class="col-sm-12 margin-left">
+                                <button ng-disabled="vm.disablePlayButton" ng-click="vm.bowl()">
+                                    <img src="assets/bowling.jpg"
+                                    height="80" width="80" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-<button ng-disabled="vm.disablePlayButton" ng-click="vm.bowl()">Bowl</button>
+    <div class="row top-buffer"></div>
 
-<div ng-repeat="over in vm.game.Innings[0].Overs" class="panel panel-default">
-    
-    <div class="panel-heading">
-        <h1 class="panel-title">{{over.number+1}}</h1>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-deck">
+                <div class="card" ng-repeat="over in vm.game.Innings[0].Overs">
+                    <div class="card-block">
+                        <h4 class="card-title">Over {{over.number+1}}</h4>
+                        <p class="card-text">
+                            <ul class="list-group" ng-repeat="bowl in over.Bowls">
+                                <li class="list-group-item justify-content-between">
+                                    <p class="font-weight-bold">{{over.number+1}}.{{bowl.number + 1}}</p>
+
+                                    <p class="text-center">
+                                        Cras justo odio
+                                    </p>
+                                    <span class="badge badge-default badge-pill">{{bowl.result}}</span>
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="panel-body" ng-repeat="bowl in over.Bowls">
-        Bowl: {{bowl.number + 1}}
-        <br> Run: {{bowl.result}}
-    </div>
-    <hr>
 </div>

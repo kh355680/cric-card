@@ -11,17 +11,26 @@
         init();
 
         vm.disablePlayButton = false;
+        vm.gameOver = false;
         vm.game = null;
-
+        vm.gameProgressPercentageDisplay = 0;
         vm.score = 0;
         var game = null;
         var bowlCounter = 1;
         vm.gameProgressPercentage = 0;
+
+        vm.isInningsOver = false;
+
         function init() {
 
-            var data = cricCardRESTService.game;
-            vm.teamOne = data.Teams[0].name;
-            vm.teamTwo = data.Teams[1].name;
+            vm.game = cricCardRESTService.game;
+            vm.teamOne = vm.game.Teams[0].name;
+            vm.teamTwo = vm.game.Teams[1].name;
+
+            console.log(vm.game);
+
+            vm.battingTeam = vm.game.Innings[0].BattingTeam.name;
+            vm.bowlingTeam = vm.game.Innings[0].BowlingTeam.name;
         }
 
         vm.bowl = function () {
@@ -34,14 +43,15 @@
 
             if (bowlCounter === 12) {
                 vm.disablePlayButton = true;
-            } else {
+                vm.gameOver = true;
                 bowlCounter += 1;
             }
 
+            bowlCounter += 1;
             vm.gameProgressPercentage += 9;
+            vm.gameProgressPercentageDisplay += 10;
             vm.game = game;
 
-            console.log(vm.game.Innings[0].Overs);
         }
     }
 
